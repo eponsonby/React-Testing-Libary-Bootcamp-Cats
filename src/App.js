@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import Card from "./components/Card/Card.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Card
+        name="Sydney"
+        phone="111-111-111"
+        email="laith@hotmail.com"
+        image={{
+          url: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+          alt: "cute cat",
+        }}
+        favorited={false}
+      />
     </div>
   );
 }
