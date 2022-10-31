@@ -1,4 +1,4 @@
-import "./Pets";
+import "./Pets.css";
 import Filter from "../Filter/Filter";
 import Cards from "../Cards/Cards";
 

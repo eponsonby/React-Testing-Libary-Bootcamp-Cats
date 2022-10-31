@@ -1,4 +1,4 @@
-import "./Filter";
+import "./Filter.css";
 
 const Filter = ({ filters, setFilters }) => (
   <div className="pet-filter-container">
