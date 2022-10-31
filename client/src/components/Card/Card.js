@@ -1,13 +1,22 @@
 import heartFilled from "../svgs/heartFilled.svg";
 import heartOutlined from "../svgs/heartOutlined.svg";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { PetsContext } from "../Pets/Pets";
 import "./Card.css";
 
-const Card = ({ name, phone, email, image, favorited }) => {
+const Card = ({ name, phone, email, image, favorited, index }) => {
+  const { cats, setCats } = useContext(PetsContext);
   const [isFavorited, setIsFavorited] = useState(favorited);
 
   const toggleFavorited = () => {
+    updateFavorite(index, !isFavorited);
     setIsFavorited(!isFavorited);
+  };
+
+  const updateFavorite = (index, favorited) => {
+    const updatedCats = [...cats];
+    updatedCats[index].favorited = favorited;
+    setCats(updatedCats);
   };
 
   return (

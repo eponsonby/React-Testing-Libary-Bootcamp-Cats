@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import Card from "../Card";
 import userEvents from "@testing-library/user-event";
+import Pets, { PetsContext } from "../../PEts/Pets";
+import cats from "../../../mocks/cats";
 
 const cardProps = {
   name: "Sydney",
@@ -11,8 +13,17 @@ const cardProps = {
     alt: "cute cat",
   },
   favorited: false,
+  updateFavorite: () => {},
+  index: 1,
 };
 
+const renderCardComponentWithProvider = (props) => {
+  render(
+    <PetsContext.Provider value={{ cats, setCats: () => {} }}>
+      <Card {...props} />
+    </PetsContext.Provider>
+  );
+};
 describe("Card", () => {
   test("should show name of cat", () => {
     render(<Card {...cardProps} />);
@@ -55,15 +66,17 @@ describe("Card", () => {
     expect(screen.getByAltText(/filled heart/i)).toBeInTheDocument();
   });
 
-  test("should toggle heart startus", () => {
-    render(<Card {...cardProps} />);
+  test("should toggle heart status", () => {
+    renderCardComponentWithProvider(cardProps);
 
     // click once
     userEvents.click(screen.getByRole("button"));
+    expect(screen.queryByAltText(/outlined heart/i)).not.toBeInTheDocument();
     expect(screen.getByAltText(/filled heart/i)).toBeInTheDocument();
 
     // user clicks again
     userEvents.click(screen.getByRole("button"));
+    expect(screen.queryByAltText(/filled heart/i)).not.toBeInTheDocument();
     expect(screen.getByAltText(/outlined heart/i)).toBeInTheDocument();
   });
 });
